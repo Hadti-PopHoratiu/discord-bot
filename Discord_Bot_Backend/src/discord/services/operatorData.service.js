@@ -13,9 +13,10 @@ generateGetUnitDataCommands = async () => {
 	const data = await response.json();
 
 	data.map((value) => {
-		const name = value.name.toLowerCase();
+		let name = value.name;
+		const modifiedName = name.toLowerCase().replace(/\s+/g, '_');
 		jsonArray.push({
-			name: `${name}`,
+			name: `${modifiedName}`,
 			description: 'Get operator data',
 			type: 1,
 			options: [
@@ -27,11 +28,11 @@ generateGetUnitDataCommands = async () => {
 					choices: [
 						{
 							name: 'skills',
-							value: `all ${name} skills`,
+							value: `all ${name}'s skills`,
 						},
 						{
 							name: 'talents',
-							value: `all ${name} talents`,
+							value: `all ${name}'s talents`,
 						},
 					],
 				},
